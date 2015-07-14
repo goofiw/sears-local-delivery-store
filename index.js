@@ -3,7 +3,7 @@ var router = require('./routes/router');
 var views = require('koa-views');
 var serve = require('koa-static');
 var logger = require('koa-logger');
-var bodyParser = require('koa-bodyParser');
+var bodyParser = require('koa-bodyparser');
 
 var app = koa();
 
