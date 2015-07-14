@@ -17,7 +17,7 @@ app.use(views('views', {
   default: 'jade'
 }));
 
-app.use(serve(__dirname + '/public'));
+app.use(serve(__dirname + '/dist'));
 
 app.use(logger());
 
