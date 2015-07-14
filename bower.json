@@ -1,0 +1,19 @@
+{
+  "name": "mysite",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/goofiw/braided-bungee",
+  "authors": [
+    "goofiw <goofiw@gmail.com>"
+  ],
+  "description": "My personal webpage",
+  "moduleType": [
+    "es6",
+    "node"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5"
+  }
+}
