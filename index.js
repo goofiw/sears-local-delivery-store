@@ -23,6 +23,6 @@ app.use(logger());
 
 app.use(router(app));
 
-var port = 80;
+var port = 3000;
 app.listen(port);
 console.log('listening on ', port)
