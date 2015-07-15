@@ -4,6 +4,7 @@ var views = require('koa-views');
 var serve = require('koa-static');
 var logger = require('koa-logger');
 var bodyParser = require('koa-bodyparser');
+var cors = require('koa-cors');
 
 var app = koa();
 
@@ -21,6 +22,7 @@ app.use(serve(__dirname + '/dist'));
 
 app.use(logger());
 
+app.use(cors({origin: 'http://ajax.googleapis.com'}))
 app.use(router(app));
 
 var port = 3000;

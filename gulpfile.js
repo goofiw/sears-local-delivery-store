@@ -30,7 +30,7 @@ gulp.task('styles', function(){
 
 gulp.task('scripts', function() {
   return gulp.src('src/scripts/**/*.js')
-    .pipe(jshint('.jshintrc'))
+    .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(concat('main.js'))
     .pipe(gulp.dest('dist/scripts'))
