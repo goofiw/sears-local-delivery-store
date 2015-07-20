@@ -9,19 +9,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/goofiw/braided-bungee.git"
+    "url": "git+ssh://git@github.com/goofiw/kow-boilerplate.git"
   },
   "author": "goofiw",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/goofiw/braided-bungee/issues"
+    "url": "https://github.com/goofiw/koa-boilerplate/issues"
   },
-  "homepage": "https://github.com/goofiw/braided-bungee#readme",
+  "homepage": "https://github.com/goofiw/koa-boilerplate#readme",
   "dependencies": {
     "jade": "^1.11.0",
     "koa": "^0.21.0",
     "koa-bodyparser": "^2.0.0",
-    "koa-cors": "0.0.16",
     "koa-logger": "^1.2.2",
     "koa-router": "^5.1.2",
     "koa-static": "^1.4.9",
