@@ -64,6 +64,10 @@ gulp.task('watch', function() {
 
   //watch image files
   gulp.watch('src/images/**/*', ['images']);
+
+  //autoreload on change to dist
+  livereload.listen();
+  gulp.watch(['dist/**', 'views/*.jade']).on('change', livereload.changed);
 });
 
 gulp.task('start', function() {
