@@ -1,4 +1,5 @@
 #kow-boilerplate
+npm install
 
 Includes Jquery, bootstrap through bower
 Start with gulp start or node --harmony index.js
