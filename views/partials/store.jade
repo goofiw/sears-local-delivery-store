@@ -1,0 +1,44 @@
+p.text-info
+    | Welcome to the Angular Store
+    br
+    |   Please select the products you want &mldr;.
+    br
+    p
+      | Search: 
+      input(ng-model='search')
+    table.table.table-bordered
+      tr.well
+        td.tdRight(colspan='4')
+          a(href='default.htm#/cart', title='go to shopping cart', ng-disabled='cart.getTotalCount() < 1')
+            i.icon-shopping-cart
+              b {{cart.getTotalCount()}}
+              |  items,
+              |         
+              b {{cart.getTotalPrice() | currency}}
+      |   
+      tr(ng-repeat="product in store.products | orderBy:'name' | filter:search")
+        td.tdCenter
+          img(ng-src='img/products/{{product.sku}}.jpg', alt='{{product.name}}')
+        |     
+        td
+          a(href='#/products/{{product.sku}}')
+            b {{product.name}}
+          |       
+          br
+          | {{product.description}}
+        |     
+        td.tdRight
+          | {{product.price | currency}}
+        |     
+        td.tdCenter
+          a(href='', ng-click='cart.addItem(product.sku, product.name, product.price, 1)')
+            | add to cart
+      |   
+      tr.well
+        td.tdRight(colspan='4')
+          a(href='default.htm#/cart', title='go to shopping cart', ng-disabled='cart.getTotalCount() < 1')
+            i.icon-shopping-cart
+              b {{cart.getTotalCount()}}
+              |  items,
+              |          
+              b {{cart.getTotalPrice() | currency}}

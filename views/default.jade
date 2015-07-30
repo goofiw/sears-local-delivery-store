@@ -1,0 +1,21 @@
+html(ng-app='AngularStore')
+  head
+    // includes for jquery, angular, and bootstrap 
+    script(src='bower_components/jquery/dist/jquery.min.js') 
+    script(rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.min.css')
+    script(src='bower_components/angular/angular.js')
+    script(src='bower_components/angular-route/angular-route.js')
+    // includes for the Angular Store app
+    script(src='/js/main.js')     
+    script(src='/js/bundle.js')     
+    link(href='css/style.css', rel='stylesheet', type='text/css')
+    |   
+  body
+    .container-fluid
+      .row-fluid
+        .span10.offset1
+          h1.well
+            a(href='default.html')
+            |                     Angular Store
+          |                 
+          div(ng-view='')

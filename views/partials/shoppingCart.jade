@@ -1,0 +1,85 @@
+p.text-info
+    | Thanks for shopping at the Angular Store.
+    br
+    |   This is your shopping cart. Here you can edit the items,
+    |   go back to the store, clear the cart, or check out.
+    .container-fluid
+      .row-fluid
+
+// items
+.span8
+    table.table.table-bordered
+      // header
+      tr.well
+        td
+          b Item
+        |       
+        td.tdCenter
+          b Quantity
+        |       
+        td.tdRight
+          b Price
+        |       
+        td
+      // empty cart message
+      tr(ng-hide='cart.getTotalCount() > 0')
+        td.tdCenter(colspan='4') Your cart is empty. 
+      // cart items
+      tr(ng-repeat="item in cart.items | orderBy:'name'")
+        td {{item.name}}
+        |       
+        td.tdCenter
+          .input-append
+            // use type=tel instead of number to prevent spinners
+            input.span3.text-center(type='tel', ng-model='item.quantity', ng-change='cart.saveItems()')
+            |           
+            button.btn.btn-success(type='button', ng-disabled='item.quantity >= 1000', ng-click='cart.addItem(item.sku, item.name, item.price, +1)')
+              | +
+            |           
+            button.btn.btn-inverse(type='button', ng-disabled='item.quantity <= 1', ng-click='cart.addItem(item.sku, item.name, item.price, -1)')
+              | -
+        |       
+        td.tdRight {{item.price * item.quantity | currency}}
+        |       
+        td.tdCenter(title='remove from cart')
+          a(href='', ng-click='cart.addItem(item.sku, item.name, item.price, -10000000)')
+            i.icon-remove
+      // footer
+      tr.well
+        td
+          b Total
+        |       
+        td.tdCenter
+          b {{cart.getTotalCount()}}
+        |       
+        td.tdRight
+          b {{cart.getTotalPrice() | currency}}
+          |       
+          td
+
+// buttons
+.span4
+    p.text-info
+      button.btn.btn-block(onclick="window.location.href='default.htm'")
+        i.icon-chevron-left
+          | back to store
+      |     
+      button.btn.btn-block.btn-danger(ng-click='cart.clearItems()', ng-disabled='cart.getTotalCount() < 1')
+        i.icon-trash.icon-white
+          | clear cart
+
+p.text-info
+    button.btn.btn-block.btn-primary(ng-click="cart.checkout('PayPal')", ng-disabled='cart.getTotalCount() < 1')
+        i.icon-ok.icon-white
+          | check out using PayPal
+      |   
+    button.btn.btn-block.btn-primary(ng-click="cart.checkout('Google')", ng-disabled='cart.getTotalCount() < 1')
+      i.icon-ok.icon-white
+        | check out using Google
+
+p.text-info
+    button.btn.btn-block.btn-link(ng-click="cart.checkout('PayPal')", ng-disabled='cart.getTotalCount() < 1')
+        img(src='https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif', alt='checkout PayPal')
+      |   
+    button.btn.btn-block.btn-link(ng-click="cart.checkout('Google')", ng-disabled='cart.getTotalCount() < 1')
+      img(src='https://checkout.google.com/buttons/checkout.gif?...', alt='checkoutGoogle')

@@ -12,7 +12,11 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
     del = require('del'),
     nodemon = require('gulp-nodemon'),
+    browserify = require('gulp-browserify'),
+    gutil = require('gulp-util'),
+    jade = require('gulp-jade'),
     bower = require('gulp-bower');
+
 
 var config = {
   bowerDir: './bower_components'
@@ -28,24 +32,55 @@ gulp.task('styles', function(){
     .pipe(notify({ message: 'Styles task complete' }));
 });
 
-gulp.task('scripts', function() {
-  return gulp.src('src/scripts/**/*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'))
-    .pipe(concat('main.js'))
-    .pipe(gulp.dest('dist/scripts'))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(uglify())
-    .pipe(gulp.dest('dist/scripts'))
-    .pipe(notify({ message: 'Scripts task complete' }));
+// gulp.task('scripts', function() {
+//   return gulp.src('src/scripts/**/*.js')
+//     .pipe(jshint())
+//     .pipe(jshint.reporter('default'))
+//     .pipe(concat('main.js'))
+//     .pipe(gulp.dest('dist/scripts'))
+//     .pipe(rename({suffix: '.min'}))
+//     .pipe(uglify())
+//     .pipe(gulp.dest('dist/scripts'))
+//     .pipe(notify({ message: 'Scripts task complete' }));
+// });
+
+gulp.task('scripts', ['clean'], function() {
+    return gulp.src(['src/js/app.js'])
+        .pipe(browserify({
+          insertGlobals: true,
+          debug: true
+        }))
+        .pipe(concat('bundle.js'))
+        .on('error', gutil.log)
+        .pipe(gulp.dest('dist/js'))
+        .pipe(notify({Message: 'Script task complete'}))
 });
 
+gulp.task('jsmain', ['clean'], function() {
+        return gulp.src('src/js/main/*')
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'))
+        .pipe(concat('main.js'))
+        .pipe(gulp.dest('dist/js'))
+        .pipe(notify({ message: 'jsmain task complete'}))
+
+});
 gulp.task('images', function() {
   return gulp.src('src/images/**/*')
     .pipe(cache(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true })))
     .pipe(gulp.dest('dist/images'))
     .pipe(notify({ message: 'Images task complete' }));
 });
+
+gulp.task('views', function(){
+  gulp.src('views/default.jade')
+  .pipe(jade())
+  .pipe(gulp.dest('dist/'));
+
+  gulp.src('views/partials/**/*')
+  .pipe(jade())
+  .pipe(gulp.dest('dist/views/'));
+})
 
 gulp.task('clean', function(cb) {
   del(['dist/assets/css', 'dist/assets/js', 'dist/assets/img'], cb)
@@ -60,7 +95,7 @@ gulp.task('watch', function() {
   gulp.watch('src/styles/**/*.scss', ['styles']);
 
   //watch .js files
-  gulp.watch('src/scripts/**/*.js', ['scripts']);
+  gulp.watch('src/js/**/*.js', ['scripts']);
 
   //watch image files
   gulp.watch('src/images/**/*', ['images']);
