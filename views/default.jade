@@ -1,6 +1,7 @@
 html(ng-app='AngularStore')
   head
     // includes for jquery, angular, and bootstrap 
+    script(src="https://maps.googleapis.com/maps/api/js?sensor=false")
     script(src='bower_components/jquery/dist/jquery.min.js') 
     script(rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.min.css')
     script(src='bower_components/angular/angular.js')
@@ -8,7 +9,7 @@ html(ng-app='AngularStore')
     // includes for the Angular Store app
     script(src='/js/main.js')     
     script(src='/js/bundle.js')     
-    link(href='css/style.css', rel='stylesheet', type='text/css')
+    link(href='/styles/main.css', rel='stylesheet', type='text/css')
     |   
   body
     .container-fluid
@@ -17,5 +18,5 @@ html(ng-app='AngularStore')
           h1.well
             a(href='default.html')
             |                     Angular Store
-          |                 
+          
           div(ng-view='')

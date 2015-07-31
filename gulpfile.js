@@ -100,6 +100,12 @@ gulp.task('watch', function() {
   //watch image files
   gulp.watch('src/images/**/*', ['images']);
 
+  //views
+  gulp.watch('views/**/*.jade', ['views']);
+
+  //main js files
+  gulp.watch('src/js/main/*.js', ['jsmain']);
+
   //autoreload on change to dist
   livereload.listen();
   gulp.watch(['dist/**', 'views/*.jade']).on('change', livereload.changed);

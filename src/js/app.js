@@ -17,7 +17,8 @@ var storeApp = angular.module('AngularStore', ['ngRoute']).
       controller: storeController }).
     otherwise({
       redirectTo: '/store' });
-}]);
+}])
+  //controller('storeController', function($scope));
 
 // create a data service that provides a store and a shopping
 // cart that will be shared by all views
@@ -34,8 +35,17 @@ storeApp.factory("DataService", function() {
     ship_method_price_2: "15.00",
     ship_method_currency_2: "USD"
   });
+  function mapInit() {
+    var mapOptions = {
+      center: { lat: -34.397, lng: 150.644},
+      zoom: 8
+    };
+    var map = new google.maps.Map(document.getElementById('map'),
+        mapOptions);
+  }
   return {
     store: myStore,
-    cart: myCart
+    cart: myCart,
+    map: mapInit
   };
 });
