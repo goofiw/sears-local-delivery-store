@@ -3,6 +3,8 @@
 // injects the appropriate partial page
 var storeController = require('./controllers/controller');
 
+
+
 var storeApp = angular.module('AngularStore', ['ngRoute']).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
@@ -18,8 +20,7 @@ var storeApp = angular.module('AngularStore', ['ngRoute']).
     otherwise({
       redirectTo: '/store' });
 }])
-  //controller('storeController', function($scope));
-
+  .controller('storeController', storeController);
 // create a data service that provides a store and a shopping
 // cart that will be shared by all views
 // (instead of creating fresh ones for each view).
@@ -36,12 +37,7 @@ storeApp.factory("DataService", function() {
     ship_method_currency_2: "USD"
   });
   function mapInit() {
-    var mapOptions = {
-      center: { lat: -34.397, lng: 150.644},
-      zoom: 8
-    };
-    var map = new google.maps.Map(document.getElementById('map'),
-        mapOptions);
+
   }
   return {
     store: myStore,
