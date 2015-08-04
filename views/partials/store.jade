@@ -4,14 +4,14 @@ p.text-info
     |   Please select the products you want &mldr;.
     br
 form.simple-form(novalidate='')
-    input(type='text', ng-model='store.query')
+    input(type='text', ng-model='store.query' autofocus)
     br
     |         
     input(type='submit', ng-click='search(store.query)', value='Search')
     table.table.table-bordered
       tr.well
         td.tdRight(colspan='4')
-          a(href='default.htm#/cart', title='go to shopping cart', ng-disabled='cart.getTotalCount() < 1')
+          a(href='/#/cart', title='go to shopping cart', ng-disabled='cart.getTotalCount() < 1')
             i.icon-shopping-cart
               b {{cart.getTotalCount()}}
               |  items,
@@ -20,11 +20,10 @@ form.simple-form(novalidate='')
       |   
       tr(ng-repeat="product in store.products | orderBy:'name'")
         td.tdCenter
-          img(ng-src='{{product.url}}', alt='{{product.name}}')
+          img(ng-src='{{product.url}}', alt='{{product.productName}}')
         |     
         td
-          a(href='#/products/{{product.sku}}')
-            b {{product.name}}
+          b {{product.productName}}
           |       
           br
           | {{product.description}}
@@ -33,14 +32,15 @@ form.simple-form(novalidate='')
           | {{product.price | currency}}
         |     
         td.tdCenter
-          a(href='', ng-click='cart.addItem(product.sku, product.name, product.price, 1)')
+          a(href='', ng-click='cart.addItem(product.sku, product.productName, product.price, 1, product.storeNumber)')
             | add to cart
       |   
       tr.well
         td.tdRight(colspan='4')
-          a(href='default.htm#/cart', title='go to shopping cart', ng-disabled='cart.getTotalCount() < 1')
+          a(href='default.htm/#/cart', title='go to shopping cart', ng-disabled='cart.getTotalCount() < 1')
             i.icon-shopping-cart
               b {{cart.getTotalCount()}}
               |  items,
               |          
               b {{cart.getTotalPrice() | currency}}
+

@@ -56,11 +56,21 @@ p.text-info
           b {{cart.getTotalPrice() | currency}}
           |       
           td
+      tr.well
+        td
+          b Delivery Fee
+        td.tdRight
+          div(ng-if='!quote')
+            button.btn.btn-block.btn-primary(ng-click="getDeliveryQuote()", ng-disabled='cart.getTotalCount() < 1')
+              i.icon-ok.icon-white
+                | get delivery quote
+          div(ng-if='quote')
+            b {{quote/100 | currency}}
 
 // buttons
 .span4
     p.text-info
-      button.btn.btn-block(onclick="window.location.href='default.htm'")
+      button.btn.btn-block(onclick="window.location.href='/#/store'")
         i.icon-chevron-left
           | back to store
       |     
@@ -69,17 +79,9 @@ p.text-info
           | clear cart
 
 p.text-info
-    button.btn.btn-block.btn-primary(ng-click="cart.checkout('PayPal')", ng-disabled='cart.getTotalCount() < 1')
-        i.icon-ok.icon-white
-          | check out using PayPal
-      |   
-    button.btn.btn-block.btn-primary(ng-click="cart.checkout('Google')", ng-disabled='cart.getTotalCount() < 1')
-      i.icon-ok.icon-white
-        | check out using Google
+
 
 p.text-info
-    button.btn.btn-block.btn-link(ng-click="cart.checkout('PayPal')", ng-disabled='cart.getTotalCount() < 1')
-        img(src='https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif', alt='checkout PayPal')
-      |   
-    button.btn.btn-block.btn-link(ng-click="cart.checkout('Google')", ng-disabled='cart.getTotalCount() < 1')
-      img(src='https://checkout.google.com/buttons/checkout.gif?...', alt='checkoutGoogle')
+    button.btn.btn-block.btn-primary(ng-click="submitOrder()", ng-show='quoted')
+        i.icon-ok.icon-white
+          | Order!

@@ -50,6 +50,7 @@ gulp.task('scripts', ['clean'], function() {
           insertGlobals: true,
           debug: true
         }))
+        .on('error', gutil.log)
         .pipe(concat('bundle.js'))
         .on('error', gutil.log)
         .pipe(gulp.dest('dist/js'))
