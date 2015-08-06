@@ -11,6 +11,9 @@
     "type": "git",
     "url": "git+ssh://git@github.com/goofiw/kow-boilerplate.git"
   },
+  "scripts": {
+    "start": "node --harmony index.js"
+  },
   "author": "goofiw",
   "license": "ISC",
   "bugs": {
