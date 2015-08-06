@@ -79,32 +79,8 @@ function storeController($scope, $routeParams, $http, $interval, DataService) {
     .then(function(response){
       console.log(response);
       $scope.deliveryId = response.data.id;
-      $scope.refreshDelivery();
-      window.location.href='/#/delivery';
+      window.location.href='/#/delivery/' + $scope.deliveryId;
     })
-  }
-
-  $scope.refreshDelivery = function() {
-    var url = '/update?delivery_id='.concat($scope.deliveryId);
-    var promise = $interval(function(){
-      $http({
-        url: '/apiCall/',
-        data: {data: url},
-        method: 'POST'
-      })
-      .then(function(resp) {
-        $scope.update = resp.data;
-        if (resp.data.courier){
-          $scope.update.courier = resp.data.courier;
-          console.log($scope.update.courier.name);//outputs correct name
-          $scope.$apply();
-        }
-        //stops when complete
-        if ($scope.update.complete){
-          $interval.cancel(promise);
-        }
-      })
-    }, 5000 );
   }
 }
 

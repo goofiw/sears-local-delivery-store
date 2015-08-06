@@ -1,7 +1,8 @@
 // App Module: the name AngularStore matches the ng-app attribute
 // in the main <html> tag. The route provides parses the URL and
 // injects the appropriate partial page
-var storeController = require('./controllers/controller');
+var storeController = require('./controllers/storeController'),
+    deliveryController = require('./controllers/deliveryController');
 
 
 
@@ -17,9 +18,9 @@ var storeApp = angular.module('AngularStore', ['ngRoute']).
     when('/cart', { 
       templateUrl: 'views/shoppingCart.html',
       controller: storeController }).
-    when('/delivery', {
+    when('/delivery/:id', {
       templateUrl: 'views/delivery.html',
-      controller: storeController }).
+      controller: deliveryController }).
     otherwise({
       redirectTo: '/store' });
 }])

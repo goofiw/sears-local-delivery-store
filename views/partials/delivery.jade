@@ -1,0 +1,13 @@
+div(ng-if="update.status == 'pending'")
+  p.test-info
+    h1 A driver is being assigned
+div(ng-if="update.status != 'pending'")
+  div(ng-if="update.status == 'dropoff'")
+    p.text-info 
+      h1 {{update.courier.name}} is on their way to pickup your order!
+  div(ng-if="update.status == 'dropoff'")
+    p.text-info 
+      h1 {{update.courier.name}} is on their way to you!
+  div(ng-if="update.status == 'delivered'")  
+    p.text-info Delivery Complete
+  #deliveryMap
