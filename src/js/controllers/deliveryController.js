@@ -13,7 +13,7 @@ function deliveryController($scope, $routeParams, $http, $interval) {
       zoom: 11,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    $scope.map = new google.maps.Map(document.getElementById("deliveryMap"), mapProp);
+    $scope.map = new google.maps.Map(document.getElementById("delivery-map"), mapProp);
     var dropoffMarker = new google.maps.Marker({
       position: new google.maps.LatLng($scope.update.dropoff.location.lat, $scope.update.dropoff.location.lng),
       map: $scope.map,
@@ -56,7 +56,7 @@ function deliveryController($scope, $routeParams, $http, $interval) {
             var courierLocation = new google.maps.LatLng($scope.update.courier.location.lat, $scope.update.courier.location.lng)
             updateCourierLocation(courierLocation);;
           } else {
-            mapInit();
+            mapInit();  
             google.maps.event.addDomListener(window, 'load', mapInit);
           }
         }

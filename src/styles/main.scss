@@ -1,9 +1,67 @@
-
-#deliveryMap {
-  height: 400px;
-  width: 400px;
+body {
+  background-color: #DDDDDD;
 }
 
 img {
   width: 4em;
+}
+
+.center-div {
+  margin: auto;
+  float: none;
+}
+.heading{
+  height: auto;
+  font-family: Arial;
+  text-align: center;
+  background-color: #232F3E;
+  border-radius: .7em;
+  margin: 2em;
+
+   ol.directions {
+    display: inline-block;
+    text-align: left;
+    font-size: 1em;
+    color: #929394;
+
+    -moz-column-count: 2;
+    -moz-column-gap: 1em;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 1em;
+    column-count: 2;
+    column-gap: 1em;
+  } 
+  .title{
+    font-size: 3.5em;
+    padding: .25em;
+    color: #fff;
+  }
+}
+
+.loading {
+  margin: 0 auto;
+}
+
+.delivery-update {
+  margin: 2em auto;
+  padding: 2em 20% 2em 20%;
+}
+
+.delivery-logo {
+  display: inline-block;
+  width: 10em;
+  height: 10em;
+  margin: 3em auto;
+}
+
+.delivery-update {
+  display: inline-block;
+  margin: 1em auto;
+  float: left;
+}
+
+#delivery-map {
+  height: 60%;
+  width: 60%;
+  margin: 0 auto;
 }

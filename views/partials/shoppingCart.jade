@@ -1,11 +1,3 @@
-p.text-info
-    | Thanks for shopping at the Angular Store.
-    br
-    |   This is your shopping cart. Here you can edit the items,
-    |   go back to the store, clear the cart, or check out.
-    .container-fluid
-      .row-fluid
-
 // items
 .span8
     table.table.table-bordered
@@ -69,19 +61,21 @@ p.text-info
 
 // buttons
 .span4
-    p.text-info
-      button.btn.btn-block(onclick="window.location.href='/#/store'")
-        i.icon-chevron-left
-          | back to store
-      |     
-      button.btn.btn-block.btn-danger(ng-click='cart.clearItems()', ng-disabled='cart.getTotalCount() < 1')
-        i.icon-trash.icon-white
-          | clear cart
-
-p.text-info
-
-
-p.text-info
+  p.text-info
     button.btn.btn-block.btn-primary(ng-click="submitOrder()", ng-show='quoted')
-        i.icon-ok.icon-white
+      i.icon-ok.icon-white
           | Order!
+  p.text-info
+    button.btn.btn-block(onclick="window.location.href='/#/store'")
+      i.icon-chevron-left
+        | back to store
+  p.text-info
+    |     
+    button.btn.btn-block.btn-danger(ng-click='cart.clearItems()', ng-disabled='cart.getTotalCount() < 1')
+      i.icon-trash.icon-white
+        | clear cart
+
+
+
+
+

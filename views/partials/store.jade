@@ -1,47 +1,35 @@
-p.text-info
-    | Welcome to the Angular Store
-    br
-    |   Please select the products you want &mldr;.
-    br
-form.simple-form(novalidate='')
-    input(type='text', ng-model='store.query' autofocus)
-    br
-    |         
-    input(type='submit', ng-click='search(store.query)', value='Search')
-    table.table.table-bordered
-      tr.well
-        td.tdRight(colspan='4')
-          a(href='/#/cart', title='go to shopping cart', ng-disabled='cart.getTotalCount() < 1')
-            i.icon-shopping-cart
-              b {{cart.getTotalCount()}}
-              |  items,
-              |         
-              b {{cart.getTotalPrice() | currency}}
-      |   
-      tr(ng-repeat="product in store.products | orderBy:'name'")
-        td.tdCenter
-          img(ng-src='{{product.url}}', alt='{{product.productName}}')
-        |     
-        td
-          b {{product.productName}}
-          |       
-          br
-          | {{product.description}}
-        |     
-        td.tdRight
-          | {{product.price | currency}}
-        |     
-        td.tdCenter
-          a(href='', ng-click='cart.addItem(product.sku, product.productName, product.price, 1, product.storeNumber)')
-            | add to cart
-      |   
-      tr.well
-        td.tdRight(colspan='4')
-          a(href='default.htm/#/cart', title='go to shopping cart', ng-disabled='cart.getTotalCount() < 1')
-            i.icon-shopping-cart
-              b {{cart.getTotalCount()}}
-              |  items,
-              |          
-              b {{cart.getTotalPrice() | currency}}
+.center-block
+  form.form-inline(novalidate='')
+    input.form-control(type='text', ng-model='store.query' autofocus)
+    |          
+    input.form-control(type='submit', ng-click='search(store.query)', value='Search')
+  div(ng-if='inSearch')
+    div(search-load-indicator)
+div(ng-show="store.products.length > 0")
+  table.table.table-bordered
+    tr.well
+      td.tdRight(colspan='4')
+        a(href='/#/cart', title='go to shopping cart', ng-disabled='cart.getTotalCount() < 1')
+          <span class="glyphicon glyphicon-shopping-cart"></span>
+          i.icon-shopping-cart
+            b {{cart.getTotalCount()}}
+            |  items,
+    tr(ng-repeat="product in store.products | orderBy:'name'")
+      td.tdCenter
+        img(ng-src='{{product.url}}', alt='{{product.productName}}')
+      |     
+      td
+        b {{product.productName}}
+        |       
+        br
+        | {{product.description}}
+      |     
+      td.tdRight
+        | {{product.price | currency}}
+      |     
+      td.tdCenter
+        a(href='', ng-click='cart.addItem(product.sku, product.productName, product.price, 1, product.storeNumber)')
+          | add to cart
+          |   
 google-map.map(latitude="37.77493" longitude="-122.41942")
 

@@ -27,7 +27,7 @@ function storeController($scope, $routeParams, $http, $interval, DataService) {
 
   $scope.search = function(query){
     var responseObject;
-    console.log('in search');
+    $scope.inSearch = true;
     $http({
       url:'/apiCall', 
       data: {data: '/products?keyword=' + query + '&latlong=36.125962,-115.211263'},

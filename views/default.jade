@@ -3,20 +3,25 @@ html(ng-app='AngularStore')
     // includes for jquery, angular, and bootstrap 
     script(src="https://maps.googleapis.com/maps/api/js")
     script(src='bower_components/jquery/dist/jquery.min.js') 
-    script(rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.min.css')
+    script(src='bower_components/bootstrap/dist/js/bootstrap.min.js')
     script(src='bower_components/angular/angular.js')
     script(src='bower_components/angular-route/angular-route.js')
     // includes for the Angular Store app
     script(src='/js/main.js')     
     script(src='/js/bundle.js')     
+    link(href='/bower_components/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' type='text/css')
     link(href='/styles/main.css', rel='stylesheet', type='text/css')
     |   
   body
     .container-fluid
-      .row-fluid
-        .span10.offset1
-          h1.well
-            a(href='default.html')
-            |                     Angular Store
-          
-          div(ng-view='')
+      .heading 
+        .title Local Delivery with Postmates and Sears! 
+        ol.directions
+          li 1.  Search for an item
+          li 2.  Add the item to your cart
+          li 3.  Go to your cart to see your total
+          li 4.  Request a delivery quote
+          li 5.  Order!
+          li 6.  Watch and wait while the courier<br>   at a local Sears store and delivers it to<br>   your door.
+      search-load-indicator
+      div(ng-view='')

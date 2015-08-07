@@ -2,12 +2,13 @@
 // in the main <html> tag. The route provides parses the URL and
 // injects the appropriate partial page
 var storeController = require('./controllers/storeController'),
-    deliveryController = require('./controllers/deliveryController');
+    deliveryController = require('./controllers/deliveryController'),
+    searchLoadIndicator = require('./directives/searchLoadIndicator');
 
 
 
-var storeApp = angular.module('AngularStore', ['ngRoute']).
-  config(['$routeProvider', function($routeProvider) {
+var storeApp = angular.module('AngularStore', ['ngRoute'])
+  .config(function($routeProvider, $httpProvider) {
   $routeProvider.
     when('/store', { 
       templateUrl: 'views/store.html',
@@ -22,9 +23,24 @@ var storeApp = angular.module('AngularStore', ['ngRoute']).
       templateUrl: 'views/delivery.html',
       controller: deliveryController }).
     otherwise({
-      redirectTo: '/store' });
-}])
-  .controller('storeController', storeController);
+      redirectTo: '/store' 
+    });
+    
+    $httpProvider.interceptors.push(function($q, $rootScope) {
+      return {
+        'request': function(config){
+          $rootScope.$broadcast('loading-started');
+          return config || $q.when(config);
+        },
+        'response': function(response){
+          $rootScope.$broadcast('loading-complete');
+          return response || $q.when(response);
+        }
+      }
+    })     
+  })
+  .controller('storeController', storeController)
+  .directive('searchLoadIndicator', searchLoadIndicator);
 // create a data service that provides a store and a shopping
 // cart that will be shared by all views
 // (instead of creating fresh ones for each view).
@@ -40,12 +56,8 @@ storeApp.factory("DataService", function() {
     ship_method_price_2: "15.00",
     ship_method_currency_2: "USD"
   });
-  function mapInit() {
-
-  }
   return {
     store: myStore,
     cart: myCart,
-    map: mapInit
   };
 });
