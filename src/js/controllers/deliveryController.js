@@ -50,6 +50,9 @@ function deliveryController($scope, $routeParams, $http, $interval) {
       })
       .then(function(resp) {
         $scope.update = resp.data;
+        if(!$scope.driverImageSrc && $scope.update.status == "pickup"){
+          $scope.driverImageSrc = $scope.update.courier.img_href
+        }
         if (resp.data.courier){
           console.log($scope.update.courier.name);//outputs correct name
           if ($scope.map){

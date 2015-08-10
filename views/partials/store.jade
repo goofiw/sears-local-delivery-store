@@ -13,7 +13,7 @@ div(ng-show="store.products.length > 0")
           <span class="glyphicon glyphicon-shopping-cart"></span>
           i.icon-shopping-cart
             b {{cart.getTotalCount()}}
-            |  items,
+            |  items | Checkout
     tr(ng-repeat="product in store.products | orderBy:'name'")
       td.tdCenter
         img(ng-src='{{product.url}}', alt='{{product.productName}}')

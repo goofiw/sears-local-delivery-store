@@ -42,7 +42,8 @@ img {
 }
 
 .loading {
-  margin: 0 auto;
+  margin: 0px auto;
+  display: inline-block;
 }
 
 .delivery-update {

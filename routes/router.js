@@ -14,7 +14,7 @@ function route(app) {
     }
     var apiResponse = yield request(requestOptions);
     console.log(apiResponse.body);
-      this.response.body = apiResponse.body;
+    this.response.body = apiResponse.body;
   })
 
   return router.routes();

@@ -1,7 +1,7 @@
 var searchLoadIndicator = function(){
   return {
     restrict:'A',
-    template:"<img class='loading' src='http://media.giphy.com/media/l4eA8oZpx71oQ/giphy.gif' alt='loading...'></img>",
+    template:"<div class='loading'><img src='http://flight.chinatripadvisor.com/images/loading.gif' alt='loading...'></img><h2>Querying Servers...</h2></div>",
     link:function(scope, elem, attrs){
       scope.$on('loading-started', function(e){
         elem.css({"display":''});
