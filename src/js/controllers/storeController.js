@@ -26,7 +26,9 @@ function storeController($scope, $routeParams, $http, $interval, DataService) {
   // });
 
   $scope.search = function(query){
-    var responseObject;
+    $scope.store.clearProducts();
+    var responseObject,
+        productData;
     $scope.inSearch = true;
     $http({
       url:'/apiCall', 
@@ -36,7 +38,7 @@ function storeController($scope, $routeParams, $http, $interval, DataService) {
     .then(function(response){
       responseObject = response.data.data;
       responseObject.forEach(function(data){
-        var productData = {
+        productData = {
           sku: data.Id.SkuPartNumber,
           productName: data.Description.Name,
           desc: data.Description.BrandName,

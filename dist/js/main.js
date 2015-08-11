@@ -118,3 +118,7 @@ store.prototype.getProduct = function (sku) {
 store.prototype.addProduct = function(product){
   this.products.push(product);
 }
+
+store.prototype.clearProducts = function(product) {
+  this.products = [];
+}
